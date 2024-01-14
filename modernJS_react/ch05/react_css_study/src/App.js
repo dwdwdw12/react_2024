@@ -11,8 +11,9 @@ function App() {
       <StyledJsx/>
       <StyledComponents />
       <Emotion/>
-      <TailwindCss/>
+      <TailwindCss/>  
     </div>
+    //tailwindcss 적용 문제...
   );
 }
 
