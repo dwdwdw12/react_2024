@@ -14,12 +14,13 @@ const style = {
 
 export const Card = props => {
     //props로 관리자 플래그를 받는다.
-    const {isAdmin} = props;
+    //const {isAdmin} = props;
 
     return(
         <div style={style}>
             <p>테스트 이름</p>
-            <EditButton isAdmin={isAdmin}/>
+            {/* <EditButton isAdmin={isAdmin}/> */}
+            <EditButton />
         </div>
     );
 };
