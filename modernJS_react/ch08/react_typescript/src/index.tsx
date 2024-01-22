@@ -1,19 +1,37 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { useEffect, useState } from 'react';
+import { ListItem } from './components/ListItem';
+import axios from 'axios';
+import type { User } from './types/user';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// type User = {
+//   id: number;
+//   name: string;
+//   age: number;
+//   personalColor: string;
+// };
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+export const App = () => {
+  //얻은 사용자 정보
+  const [users, setUsers] = useState<User[]>([]);
+
+  //화면에 표시될 때 사용자 정보 얻기
+  useEffect(() => {
+    axios.get<User[]>("https://example.com/users").then((res) => {
+      setUsers(res.data);
+    });
+  }, []);
+
+  return (
+    <div>
+      {users.map((user) => (
+        <ListItem
+          id={user.id}
+          name={user.name}
+          age={user.age}
+          personalColor={user.personalColor}
+          //hobbies={user.hobbies}
+        />
+      ))}
+    </div>
+  );
+};
